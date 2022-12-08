@@ -1,0 +1,32 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "mongoConnect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.11",
+    "connect-mongo": "^4.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.11.0",
+    "mongoose": "^6.7.0",
+    "node-fetch": "^3.2.10",
+    "pg": "^8.8.0",
+    "python": "^0.0.4",
+    "redis": "^4.3.1",
+    "redis-cli": "^2.1.2",
+    "time-stamp": "^2.2.0",
+    "yfinance": "^0.0.6"
+  }
+}

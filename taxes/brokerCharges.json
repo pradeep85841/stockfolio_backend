@@ -1,0 +1,49 @@
+
+{
+"Zerodha":{
+    "brokerage":"0",
+    "demat_AMC":"300",
+    "active_clients":"3,602,074"
+},
+"angelone":{
+    "brokerage":"0",
+    "demat_AMC":"240",
+    "active_clients":"1,564,667"
+},
+"aliceblue":{
+    "brokerage":"0",
+    "demat_AMC":"400",
+    "active_clients":"125,223"
+},
+"mastertrust":{
+    "brokerage":"0",
+    "demat_AMC":"300",
+    "active_clients":"48,645"
+},
+"dhanistocks":{
+    "brokerage":"0",
+    "demat_AMC":"0",
+    "active_clients":"39,644"
+},
+"fyers":{
+    "brokerage":"0",
+    "demat_AMC":"300",
+    "active_clients":"35,963"
+},
+"tradeplus":{
+    "brokerage":"0",
+    "demat_AMC":"0",
+    "active_clients":"22,257"
+},
+"sasonline":{
+    "brokerage":"0",
+    "demat_AMC":"200",
+    "active_clients":"17,878"
+},
+"finvasia":{
+    "brokerage":"0",
+    "demat_AMC":"0",
+    "active_clients":"12,018"
+}
+}
+
