@@ -18,7 +18,7 @@ let hours = date_ob.getHours();
 let minutes = date_ob.getMinutes();
 let seconds = date_ob.getSeconds();
 
-var Catalogue = await list.itCatalogue;
+var Catalogue = list.itCatalogue;
 createBlock("itcatalogue", Catalogue);
 
 export default async function createBlock(tableName, catalogueList) {

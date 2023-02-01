@@ -8,7 +8,7 @@ export const getcagr = async (stock) => {
   //var startYear = parseInt(year.slice(-4));
 
   var currentYear = new Date().getFullYear();
-  var startPeriod = currentYear - 3;
+  var startPeriod = currentYear - 4;
 
   /*  if (startYear >= startPeriod){
         startYear = (startYear+1);  

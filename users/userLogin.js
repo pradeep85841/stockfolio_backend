@@ -14,8 +14,7 @@ export default function login(req, res) {
           const token = jwt.sign({ id }, "jwtSecret", {
             expiresIn: 25892000000,
           });
-
-          res.status(200).json({ auth: true, token: token, data: result.rows });
+          res.status(200).json({ auth: true, token: token, data: result.rows[0]});
         } else {
           res.status(422).json({ error: "wrong credentials" });
         }

@@ -47,3 +47,21 @@ export default async function investedUsers(req, res) {
 
   res.status(200).send("user investment added");
 }
+
+export async function getInvestments(req, res) {
+
+  const { name } = req.body;
+
+  pool.query(
+    `select investment from investedusers where name = '${name}' `,
+    (err, result) => {
+      if (err) console.error(err);
+      if (result.rows.length !== 0) {
+        res.status(200).json( result.rows[0] );
+      } else {
+        res.status(422).json({ error: "something went wrong!" });
+      }
+    }
+  );
+
+}

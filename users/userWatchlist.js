@@ -38,7 +38,7 @@ export default async function usersWatchlist(req, res) {
     ":" +
     seconds;
 
-  const investedUsers = `INSERT INTO investedusers("name", "email_id","phone_no" , "watchlist", "timestamp") 
+  const investedUsers = `INSERT INTO userswatchlist("name", "email_id","phone_no" , "watchlist", "timestamp") 
     VALUES($1, $2, $3, $4, $5)`;
 
   var values = [name, email, phone, investment, time];
@@ -47,3 +47,4 @@ export default async function usersWatchlist(req, res) {
 
   res.status(200).send("user watchlist added");
 }
+

@@ -1,14 +1,15 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
+import pool from "./psqlDbOperations/psqlDBConnect.mjs";
 
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3001", method: ["GET", "POST"] }));
 
 const port = 5000;
+app.use(cors({ origin: "https://wondrous-khapse-b31dfc.netlify.app/" }));
 
 import db from "./mongoDbOperations/mongoConnect.js";
 const client = db;
@@ -23,11 +24,15 @@ import dividentBlockData from "./chartData/DividentchartData.js";
 import signUp from "./users/userSignUp.js";
 import login from "./users/userLogin.js";
 import investedUsers from "./users/userInvest.js";
-import usersWatchlist from "./users/userWatchlist";
+import usersWatchlist from "./users/userWatchlist.js";
 import rebalanceResults from "./agentOpertaions/getRebalanceResults.js";
 import blockUpdation from "./agentOpertaions/updateBlocks.js";
 import middleware from "./middleware.js";
 import updateUser from "./users/updateUser.js";
+
+import getInvestments from "./users/userInvest.js";
+
+app.post("/getInvestments", getInvestments);
 
 app.use(bodyParser.json());
 app.use(
@@ -56,6 +61,27 @@ app.get("/auth", middleware, (req, res) => {
   res.send("Authentication success!");
 });
 
+app.post("/getWatchlist", async(req,res)=>{
+const { name } = req.body;
+
+  pool.query(
+    `SELECT "watchlist" FROM "userswatchlist" WHERE "name" = '${name}' `,
+    (err, result) => {
+      if (err) console.error(err);
+      if (result.rows.length !== 0) {
+        const response=[];
+                    for(let i=0;  i< result.rows.length; i++){
+                            response[i] = JSON.parse(JSON.stringify(result.rows[i].watchlist));
+                        }
+        res.status(200).json( response );
+      } else {
+        res.status(422).json({ error: "something went wrong!" });
+      }
+    }
+  );
+
+});
+
 app.post("/rebalanceResults", rebalanceResults);
 
 app.post("/estimate", async (req, res) => {
@@ -66,11 +92,8 @@ app.post("/estimate", async (req, res) => {
     var userData = await modules.getUserEstimation(stock, date);
     var futureEstimation = await modules.getFutureEstimation(stock, quantity);
     var volatality = await modules.getVolatality(stock);
-  } catch (err) {
-    if (err) throw err;
-  }
 
-  var response = {
+   var response = {
     cagr: cagr,
     analysis: userData,
     volatality: volatality,
@@ -78,9 +101,15 @@ app.post("/estimate", async (req, res) => {
   };
 
   res.status(200).send(response);
+} catch (err) {
+    if (err) {
+  res.status(422).send(response);
+       throw err;
+}
+  }
 });
 
-app.post("/blockEstimate", async (req, res) => {
+app.post("/blockEstimate",(req, res) => {
   const { blockName } = req.body;
 
   var query = { blockName: `${blockName}` };
@@ -90,12 +119,11 @@ app.post("/blockEstimate", async (req, res) => {
     .find(query)
     .toArray((err, result) => {
       if (err) throw err;
-      res.status(200).send({ result });
+      res.send(result);
     });
 });
 
 app.get("/posts", (request, response) => {
-  console.log("In posts section calling mongd db");
   client
     .collection("posts")
     .find({})
