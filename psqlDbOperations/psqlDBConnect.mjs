@@ -1,13 +1,14 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
+const DB = process.env.DATABASE
 
 const { Pool } = require("pg");
 
 const pool = new Pool({
   user: "postgres",
-  host: "localhost",
-  password: "root",
+  host: DB,
   database: "stockfolio",
+  password: "root",
   port: 5432,
 });
 
