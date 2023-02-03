@@ -13,7 +13,7 @@ app.use(cors({ origin: "https://wondrous-khapse-b31dfc.netlify.app/" }));
 app.use(
   '/',
   createProxyMiddleware ({
-    target: 'https://wondrous-khapse-b31dfc.netlify.app',
+    target: 'https://backend-c551.onrender.com',
     changeOrigin: true,
     secure: true,
   })
