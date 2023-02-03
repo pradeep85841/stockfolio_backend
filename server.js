@@ -6,10 +6,18 @@ const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-
+const {createProxyMiddleware} = require('http-proxy-middleware');
 
 const port = process.env.PORT || 5000;
 app.use(cors({ origin: "https://wondrous-khapse-b31dfc.netlify.app/" }));
+app.use(
+  '/',
+  createProxyMiddleware ({
+    target: 'https://wondrous-khapse-b31dfc.netlify.app',
+    changeOrigin: true,
+    secure: true,
+  })
+);
 
 import db from "./mongoDbOperations/mongoConnect.js";
 const client = db;
