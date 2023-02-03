@@ -21,12 +21,13 @@ const port = process.env.PORT || 5000;
   })
 );*/
 
-/*app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-*/
+
 
 import db from "./mongoDbOperations/mongoConnect.js";
 const client = db;
@@ -126,7 +127,7 @@ app.post("/estimate", async (req, res) => {
   }
 });
 
-app.post("/blockEstimate",(request, response) => {
+app.post("/blockEstimate",(req, res) => {
   const { blockName } = req.body;
 
   var query = { blockName: `${blockName}` };
@@ -136,7 +137,7 @@ app.post("/blockEstimate",(request, response) => {
     .find(query)
     .toArray((err, result) => {
       if (err) throw err;
-      response.send(result);
+      res.send(result);
     });
 });
 
