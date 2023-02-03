@@ -9,15 +9,17 @@ const app = express();
 const {createProxyMiddleware} = require('http-proxy-middleware');
 
 const port = process.env.PORT || 5000;
-app.use(cors({ origin: "https://wondrous-khapse-b31dfc.netlify.app/" }));
-app.use(
+
+app.use(cors({ origin: "https://wondrous-khapse-b31dfc.netlify.app/", method: ["GET", "POST"] }));
+
+/*app.use(
   '/',
   createProxyMiddleware ({
     target: 'https://backend-c551.onrender.com',
     changeOrigin: true,
     secure: true,
   })
-);
+);*/
 
 import db from "./mongoDbOperations/mongoConnect.js";
 const client = db;
