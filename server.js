@@ -126,7 +126,7 @@ app.post("/estimate", async (req, res) => {
   }
 });
 
-app.post("/blockEstimate",(req, res) => {
+app.post("/blockEstimate",(request, response) => {
   const { blockName } = req.body;
 
   var query = { blockName: `${blockName}` };
@@ -136,7 +136,7 @@ app.post("/blockEstimate",(req, res) => {
     .find(query)
     .toArray((err, result) => {
       if (err) throw err;
-      res.send(result);
+      response.send(result);
     });
 });
 
