@@ -2,11 +2,12 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 // const fetch = require('node-fetch');
 import fetch from "node-fetch";
+const Data = process.env.STOCK_DATA
 
 export const currentPrice = async (stock) => {
   try {
     var res = await fetch(
-      `54.165.228.24:8000/financeratio?symbol=${stock}`
+      `${Data}/financeratio?symbol=${stock}`
     );
     // return res.json();
     if (res.ok) {
@@ -22,7 +23,7 @@ export const currentPrice = async (stock) => {
 export const financialRatio = async (stock) => {
   try {
     var res = await fetch(
-      `https://54.165.228.24:8000/financeratio?symbol=${stock}`
+      `${Data}/financeratio?symbol=${stock}`
     );
     return res.json();
   } catch {
@@ -33,7 +34,7 @@ export const financialRatio = async (stock) => {
 export const pastData = async (stock, date, endDate) => {
   try {
     var res = await fetch(
-      `https://54.165.228.24:8000/pastdata?symbol=${stock}&start=${date}&end=${endDate}`
+      `${Data}/pastdata?symbol=${stock}&start=${date}&end=${endDate}`
     );
     if (res.ok) {
       return res.json();
@@ -47,7 +48,7 @@ export const pastData = async (stock, date, endDate) => {
 export const stockDetails = async (stock) => {
   try {
     var res = await fetch(
-      `https://54.165.228.24:8000/financeratio?symbol=${stock}`
+      `${Data}/financeratio?symbol=${stock}`
     );
     return res.json();
   } catch {
