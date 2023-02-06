@@ -7,7 +7,7 @@ const Data = process.env.STOCK_DATA
 export const currentPrice = async (stock) => {
   try {
     var res = await fetch(
-      `https://34.230.21.175:5000/financeratio?symbol=${stock}`
+      `http://54.165.228.24:8000/financeratio?symbol=${stock}`
     );
     // return res.json();
     if (res.ok) {
@@ -23,7 +23,7 @@ export const currentPrice = async (stock) => {
 export const financialRatio = async (stock) => {
   try {
     var res = await fetch(
-      `https://34.230.21.175:5000/financeratio?symbol=${stock}`
+      `http://54.165.228.24:8000/financeratio?symbol=${stock}`
     );
     return res.json();
   } catch {
@@ -34,7 +34,7 @@ export const financialRatio = async (stock) => {
 export const pastData = async (stock, date, endDate) => {
   try {
     var res = await fetch(
-      `https://34.230.21.175:5000/pastdata?symbol=${stock}&start=${date}&end=${endDate}`
+      `http://54.165.228.24:8000/pastdata?symbol=${stock}&start=${date}&end=${endDate}`
     );
     if (res.ok) {
       return res.json();
@@ -48,7 +48,7 @@ export const pastData = async (stock, date, endDate) => {
 export const stockDetails = async (stock) => {
   try {
     var res = await fetch(
-      `https://34.230.21.175:5000/financeratio?symbol=${stock}`
+      `http://54.165.228.24:8000/financeratio?symbol=${stock}`
     );
     return res.json();
   } catch {
