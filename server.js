@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const {createProxyMiddleware} = require('http-proxy-middleware');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 10000;
 
 //app.use(cors({ origin: "https://wondrous-khapse-b31dfc.netlify.app/", method: ["GET", "POST"] }));
 
